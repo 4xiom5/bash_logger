@@ -7,8 +7,10 @@ CMD='LOG ${FUNCNAME} $@'
 touch $LOG_FILE
 
 function LOG(){
+    level=$1
+    set -- "${@:2}"
     args=($@)
-    echo "[$(date +"%F %T")] [${1}] ${args[@]:1}" >> ${LOG_FILE}
+    echo "[$(date +"%F %T")] [${level}] ${args[@]}" >> ${LOG_FILE}
 }
 
 function INFO(){
